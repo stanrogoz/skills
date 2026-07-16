@@ -13,6 +13,8 @@ Run the loop **as a conversation with the user, not a monologue**. Walk the five
 Each step ends with an explicit confirmation question to the user, and the next step does not begin until they answer yes. Never cover more than one step in a single message. Never deliver the final output until the user has confirmed all five steps in turn. This applies to EVERY request, no matter how simple it looks.
 </HARD-GATE>
 
+The loop needs a live, responsive user. Do not run it in non-interactive contexts (CI, scheduled runs, `/loop`, autonomous sessions) — the confirmation gates would stall. In those contexts, flag that the decision needs a live 5P session instead of answering the gates yourself.
+
 ## Conversation rules (apply at every step)
 
 - Announce which step you are in, so the user always knows where they are in the loop.
@@ -20,7 +22,9 @@ Each step ends with an explicit confirmation question to the user, and the next 
 - Provide your **recommended answer** with every question you ask.
 - If a *fact* can be found by exploring the conversation, attached files, or the codebase, look it up rather than asking. The *decisions* are the user's — put each one to them and wait for their answer.
 - End every step by explicitly asking for confirmation, e.g. "Is Pause settled, or is there anything to adjust before we move to Play?" A user reply that answers your last question is **not** confirmation to advance — ask.
-- Do not advance to the next step until the user answers that explicit question with a yes.
+- Do not advance to the next step until the user answers that explicit question with a yes. And an explicit yes means *yes*: "sounds good" and "sure, let's go" are often polite exits — follow up with "anything you'd refine?"; "whatever you think is best" is delegation, not a decision — re-ask as a choice between two concrete options.
+- Know when to propose settling a step: when you can predict the user's answer to the next three questions you would ask, stop asking and put the confirmation question. If several rounds pass without your understanding visibly improving, say so and step back to reframe rather than grinding on.
+- When an answer signals convention rather than intent — "scalable", "best practice", "the standard approach", "the way most teams do it" — probe it: *"If you didn't have to justify this to anyone, what would you actually want?"* That one question often does more work than the previous five.
 - Do not deliver the final output until the user confirms you have reached a shared understanding.
 
 ## Anti-patterns (each of these defeats the loop)
@@ -36,11 +40,31 @@ Each step ends with an explicit confirmation question to the user, and the next 
 
 Before producing anything, agree with the user on what a good answer even looks like.
 
+- Open with your best one-sentence read of what the user actually wants, plus an honest confidence number — and when confidence is low, name what's missing:
+
+  ```
+  HYPOTHESIS: <one sentence — what you think the user wants and why>
+  CONFIDENCE: ~40% — missing: who the audience is, what "done" looks like
+  ```
+
+  The number forces honesty and sets the depth of the step: high confidence means one confirmation question; low confidence means a real interview.
 - Establish the actual decision being made, the audience, the constraints, the available data, and what "done" looks like.
 - Establish the output format the situation actually needs (a one-pager, a table, a memo, a code change with rationale).
 - Pull what you can from context first, then put each remaining unknown to the user as a single question with your recommended answer.
+- Close the step by restating the framing in the user's own words, structured so they can confirm or correct line by line:
 
-Pause is settled when the user has confirmed the decision, the audience, and the output format.
+  ```
+  - Decision:     <what's being decided>
+  - Audience:     <who the output is for>
+  - Success:      <what done looks like>
+  - Constraint:   <the binding limit>
+  - Format:       <the agreed output format>
+  - Out of scope: <what we're explicitly not deciding>
+  ```
+
+  The "Out of scope" line is non-negotiable — half of misalignment is silent disagreement about what is *not* being decided.
+
+Pause is settled when the user confirms that restate.
 
 ### 2. Play — open up the space together
 
