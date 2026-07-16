@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "5p-framework",
+  "metadata": {
+    "description": "5p framework for AI-assisted product development."
+  },
+  "owner": {
+    "name": "Stan Rogoz",
+    "url": "https://5p-framework.com"
+  },
+  "plugins": [
+    {
+      "name": "5p-framework",
+      "source": "./",
+      "description": "5p framework for AI-assisted product development.",
+      "category": "product development",
+      "keywords": [
+        "5p-framework"
+      ]
+    }
+  ]
+}

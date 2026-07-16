@@ -1,0 +1,17 @@
+{
+  "name": "5p-framework",
+  "version": "0.1.0",
+  "description": "5p framework for AI-assisted product development.",
+  "author": {
+    "name": "Stan Rogoz",
+    "url": "https://5p-framework.com"
+  },
+  "homepage": "https://5p-framework.com",
+  "repository": "https://github.com/stan-rogoz/skills",
+  "keywords": [
+    "5p-framework"
+  ],
+  "skills": [
+    "./skills/5p-framework"
+  ]
+}

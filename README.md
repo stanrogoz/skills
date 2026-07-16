@@ -8,7 +8,7 @@ Created by [Stan Rogoz](https://github.com/stanrogoz).
 
 | Skill | Description |
 | --- | --- |
-| [`5p-framework`](skills/5p-framework/SKILL.md) | Apply the 5P Framework (Pause, Play, Push, Polish, Present) by Stan Rogoz to turn a request into a decision-ready output instead of a quick first-pass answer. |
+| [`5p-framework`](skills/5p-framework/SKILL.md) | Apply the 5P Framework (Pause, Play, Push, Polish, Present) by Stan Rogoz to turn a request into a decision-ready output instead of a quick first-pass answer. The agent invokes this automatically when a request calls for a defensible decision. |
 
 ## Quickstart (30-second setup)
 
@@ -18,9 +18,9 @@ Created by [Stan Rogoz](https://github.com/stanrogoz).
 npx skills@latest add stanrogoz/skills
 ```
 
-2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/5p-framework`**.
+2. Pick the skills you want, and which coding agents you want to install them on.
 
-3. Run `/5p-framework` in your agent. It will follow the 5 steps:
+3. Run `/5p-framework` in your agent (or let it trigger automatically when you ask for a decision). It will walk you through the 5 steps as a conversation — asking one question at a time, with a recommended answer, and confirming each step with you before moving on:
 
 | Step | Goal |
 |------|------|
